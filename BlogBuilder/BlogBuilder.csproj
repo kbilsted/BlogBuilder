@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,9 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>BlogBuilder.Program</StartupObject>
+    <StartupObject>Kbg.BlogBuilder.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MarkdownDeep">
+      <HintPath>Markdowndeep\MarkdownDeep.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,8 +49,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\DocumentInfo.cs" />
+    <Compile Include="Business\TagsExtractor.cs" />
+    <Compile Include="Domain\TocEntry.cs" />
+    <Compile Include="Business\TocContentReplacer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Business\ContentGenerator.cs" />
+    <Compile Include="Business\DocumentParser.cs" />
+    <Compile Include="Domain\Page.cs" />
+    <Compile Include="Domain\Tag.cs" />
+    <Compile Include="Business\MarkdownToHtml.cs" />
+    <Compile Include="Io\FilesystemRepository.cs" />
+    <Compile Include="Io\IFilesystemRepository.cs" />
+    <Compile Include="Business\ReadMdAndWriteHtml.cs" />
+    <Compile Include="Business\ExpandTagsToMarkdown.cs" />
+    <Compile Include="Domain\Configuration.cs" />
+    <Compile Include="Business\SiteGenerator.cs" />
+    <Compile Include="Domain\TagCollection.cs" />
+    <Compile Include="Business\TocCreator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
