@@ -78,10 +78,8 @@ namespace Kbg.BlogBuilder.Business
 
         public string GenerateCategoryLink(Tag tag, string baseUrl)
         {
-            var style =
-                $@"color: #ffffff; font-size: 12px; margin: 1px 1px 1px 1px; padding: 2px 8px; border-radius: 4px; background-color: #{
-                        tag.HexCodeForValue
-                    };    display: inline-block;";
+            var style = $@"color: #ffffff; font-size: 12px; margin: 1px 1px 1px 1px; padding: 2px 8px; border-radius: 4px; background-color: #{tag.HexCodeForValue}; display: inline-block;";
+
             var url = $"{baseUrl}Tags/{tag.Value}.html";
 
             return $"<a href=\"{url}\" style=\"{style}\">{tag.DisplayText}</a>";
