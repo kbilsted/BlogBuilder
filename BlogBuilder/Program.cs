@@ -29,8 +29,7 @@ namespace Kbg.BlogBuilder
             program.MutateTocInMdFiles(configuration, filesystemRepository);
             program.GenerateSite(configuration, filesystemRepository);
 
-            Console.WriteLine($"Done in {watch.ElapsedMilliseconds} millis. Press any key");
-            Console.ReadKey();
+            Console.WriteLine($"Done in {watch.ElapsedMilliseconds} millis.");
         }
 
         public void GenerateSite(Configuration configuration, FilesystemRepository filesystemRepository)

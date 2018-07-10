@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using Kbg.BlogBuilder.Domain;
 using Kbg.BlogBuilder.Io;
 
@@ -21,7 +22,9 @@ namespace Kbg.BlogBuilder.Business
 
         public void Execute(Configuration rootFilePath, TagCollection tags, string baseUrl, string editBaseUrl)
         {
-            var files = filesystemRepository.EnumerateFiles(rootFilePath.ArticlesPath, "*.md").ToList();
+            var files = filesystemRepository.EnumerateFiles(rootFilePath.ArticlesPath, "*.md")
+                .Union(filesystemRepository.EnumerateFiles(rootFilePath.ReadBasePath, "*.md", SearchOption.TopDirectoryOnly))
+                .ToList();
 
             var output = expandTagsToMarkdown.Execute(rootFilePath, tags, baseUrl, editBaseUrl, files, contentGenerator);
 
