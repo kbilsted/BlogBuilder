@@ -13,6 +13,8 @@ namespace Kbg.BlogBuilder.Io
 
         void Copy(string sourcepath, string destinationPath);
 
-        IEnumerable<FileInfo> EnumerateFiles(string rootPath, string filter);
+        bool Exists(string path);
+
+        IEnumerable<FileInfo> EnumerateFiles(string rootPath, string filter, SearchOption options = SearchOption.AllDirectories);
     }
 }

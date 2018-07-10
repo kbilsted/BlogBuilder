@@ -9,14 +9,9 @@ namespace Kbg.BlogBuilder.Io
         public void EnsureEmptyTagDirectory(string tagDir)
         {
             if (Directory.Exists(tagDir))
-            {
-                var directory = new DirectoryInfo(tagDir);
-                foreach (var file in directory.GetFiles())
-                    file.Delete();
-            }
+                Directory.Delete(tagDir, true);
 
-            if (!Directory.Exists(tagDir))
-                Directory.CreateDirectory(tagDir);
+            Directory.CreateDirectory(tagDir);
         }
 
         public void WriteFile(string filepath, string content)
@@ -42,10 +37,12 @@ namespace Kbg.BlogBuilder.Io
             File.Copy(sourcepath, destinationPath, true);
         }
 
-        public IEnumerable<FileInfo> EnumerateFiles(string rootPath, string filter)
+        public IEnumerable<FileInfo> EnumerateFiles(string rootPath, string filter, SearchOption options = SearchOption.AllDirectories)
         {
             var di = new DirectoryInfo(rootPath);
-            return di.EnumerateFiles(filter, SearchOption.AllDirectories);
+            return di.EnumerateFiles(filter, options);
         }
+
+        public bool Exists(string path) => File.Exists(path);
     }
 }

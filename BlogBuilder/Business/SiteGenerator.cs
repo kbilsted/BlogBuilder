@@ -39,14 +39,19 @@ namespace Kbg.BlogBuilder.Business
 
         void CopyImmutableFiles(Configuration cfg)
         {
-            var copyableFiles = filesystemRepository.EnumerateFiles(cfg.ReadBasePath, "*.*")
+            var toplevelFiles = filesystemRepository.EnumerateFiles(cfg.ReadBasePath, "*.*", SearchOption.TopDirectoryOnly);
+            var img = filesystemRepository.EnumerateFiles(Path.Combine(cfg.ReadBasePath, "img"), "*.*");
+            var articles = filesystemRepository.EnumerateFiles(cfg.ArticlesPath, "*.*");
+
+            var copyableFiles = toplevelFiles.Union(img).Union(articles)
                 .Where(x => !x.FullName.StartsWith(cfg.WritePath))
                 .Where(x => IsToCopy(x));
 
             foreach (var path in copyableFiles)
             {
                 var relativePath = path.FullName.Substring(cfg.ReadBasePath.Length);
-                filesystemRepository.Copy(path.FullName, Path.Combine(cfg.WritePath, relativePath));
+                if(!File.Exists(path.FullName))
+                    filesystemRepository.Copy(path.FullName, Path.Combine(cfg.WritePath, relativePath));
             }
         }
 
