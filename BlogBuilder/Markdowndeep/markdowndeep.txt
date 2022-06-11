@@ -1,3 +1,0 @@
-hentet som zip via github og bygget og kopieret hertil som .dll
-
-idet nuget versionen er fra 2012 og ikke opdateret sidenhen.
