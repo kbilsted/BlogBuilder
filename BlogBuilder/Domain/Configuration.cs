@@ -11,4 +11,9 @@ namespace Kbg.BlogBuilder.Domain
             WritePath = writePath;
         }
     }
+
+    public record TocEntry(string Title, string Level);
+
+    public record DocumentInfo(string Path, string Content, string Title);
+
 }

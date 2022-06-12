@@ -40,7 +40,7 @@ namespace Kbg.BlogBuilder
             var siteGenerator = new SiteGenerator(
                 contentGenerator,
                 filesystemRepository,
-                extractor, 
+                extractor,
                 readMdAndWriteHtml,
                 htmlTransformer);
 

@@ -1,27 +1,27 @@
 ﻿using MarkdownDeep;
 
-namespace Kbg.BlogBuilder.Business
-{
-    public class MarkdownToHtml
-    {
-        private readonly Markdown md = new Markdown
-        {
-            ExtraMode = true,
-            SafeMode = false,
-            AutoHeadingIDs = true,
-            FormatCodeBlock = (m, code) => $"<pre class=\"prettyprint\"><code>{code}</code></pre>\n"
-        };
+namespace Kbg.BlogBuilder.Business;
 
-        public string Execute(string markdownContent, string pageTitle, string baseUrl)
-        {
-            var footer = $@"<br>
+public class MarkdownToHtml
+{
+    private readonly Markdown md = new Markdown
+    {
+        ExtraMode = true,
+        SafeMode = false,
+        AutoHeadingIDs = true,
+        FormatCodeBlock = (m, code) => $"<pre class=\"prettyprint\"><code>{code}</code></pre>\n"
+    };
+
+    public string Execute(string markdownContent, string pageTitle, string baseUrl)
+    {
+        var footer = $@"<br>
 <br>
 Read the [Introduction]({baseUrl}) or browse the rest [of the site]({baseUrl}AllArticles.html)
 <br>
 <br>
 ";
-            var html = md.Transform(markdownContent + footer);
-            var googleAnalytics = @"
+        var html = md.Transform(markdownContent + footer);
+        var googleAnalytics = @"
 <script>
   (function(i,s,o,g,r,a,m){{i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){{
   (i[r].q=i[r].q||[]).push(arguments)}},i[r].l=1*new Date();a=s.createElement(o),
@@ -32,7 +32,7 @@ Read the [Introduction]({baseUrl}) or browse the rest [of the site]({baseUrl}All
   ga('send', 'pageview');
 </script>
 ";
-            var htmlWithCss = $@"<html>
+        var htmlWithCss = $@"<html>
 <head>
 <title>{pageTitle}</title>
 
@@ -63,7 +63,6 @@ Read the [Introduction]({baseUrl}) or browse the rest [of the site]({baseUrl}All
 </body>
 </html>";
 
-            return htmlWithCss;
-        }
+        return htmlWithCss;
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using static System.Environment;
+﻿using static System.Environment;
 
 namespace Kbg.BlogBuilder.Business
 {
@@ -45,8 +41,8 @@ namespace Kbg.BlogBuilder.Business
             var parsedToc =
                 tocLines.Select(x => TocRex.Match(x))
                     .Select(x => new TocEntry(
-                        Title : x.Groups["title"].Value, 
-                        Level : x.Groups["level"].Value));
+                        Title: x.Groups["title"].Value,
+                        Level: x.Groups["level"].Value));
             return parsedToc.ToList();
         }
 

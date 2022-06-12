@@ -1,6 +1,4 @@
-﻿using System.Text.RegularExpressions;
-
-namespace Kbg.BlogBuilder.Business
+﻿namespace Kbg.BlogBuilder.Business
 {
     public class TocContentReplacer
     {
@@ -9,7 +7,7 @@ namespace Kbg.BlogBuilder.Business
 
         static readonly Regex TocRex = new Regex(title + tocline, RegexOptions.Singleline | RegexOptions.Compiled);
 
-        public string TryReplaceToc(string content, string newToc)
+        public string? TryReplaceToc(string content, string newToc)
         {
             var match = TocRex.Match(content);
             if (!match.Success)
