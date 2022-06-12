@@ -19,7 +19,7 @@ namespace Kbg.BlogBuilder.Domain
             Path = System.IO.Path.GetDirectoryName(filePath).Replace("\\", "/");
         }
 
-        public bool Equals(Page other)
+        public bool Equals(Page? other)
         {
             if (other == null) return false;
             return Title == other.Title && FilePath == other.FilePath;

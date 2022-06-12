@@ -44,11 +44,9 @@ namespace Kbg.BlogBuilder.Business
 
             var parsedToc =
                 tocLines.Select(x => TocRex.Match(x))
-                    .Select(x => new TocEntry
-                    {
-                        Title = x.Groups["title"].Value,
-                        Level = x.Groups["level"].Value
-                    });
+                    .Select(x => new TocEntry(
+                        Title : x.Groups["title"].Value, 
+                        Level : x.Groups["level"].Value));
             return parsedToc.ToList();
         }
 

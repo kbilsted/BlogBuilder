@@ -1,5 +1,3 @@
-using System.IO;
-
 namespace Kbg.BlogBuilder.Domain
 {
     public class Configuration
