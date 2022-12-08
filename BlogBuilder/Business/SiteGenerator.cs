@@ -45,8 +45,10 @@ public class SiteGenerator
         foreach (var path in copyableFiles)
         {
             var relativePath = path.FullName.Substring(cfg.ReadBasePath.Length);
-            if (!File.Exists(path.FullName))
-                filesystemRepository.Copy(path.FullName, Path.Combine(cfg.WritePath, relativePath));
+            string destinationPath = Path.Combine(cfg.WritePath, relativePath);
+            if (!File.Exists(destinationPath)) {
+                filesystemRepository.Copy(path.FullName, destinationPath);
+            }
         }
     }
 
